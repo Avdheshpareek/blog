@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div class="header-left-actions">
+                    <button id="myBlogsBtn" type="button" onclick="openMyBlogsPanel()" style="display: none;">My Blog</button>
+                    <button id="adminPanelBtn" type="button" onclick="openAdminPanel()" style="display: none;">Admin Panel</button>
+                </div>
+                <div class="auth-top-buttons">
+                    <button id="signupBtn" type="button" onclick="window.location.href='signup.html'">Sign Up</button>
+                    <button id="loginBtn" type="button" onclick="window.location.href='login.html'">Log In</button>
+                    <button id="logoutBtn" type="button" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <h1>Blog Website</h1>
+            <p class="subtitle">Thoughts, ideas, and shared moments.</p>
+            <div id="authStatus" class="auth-status auth-status-guest" aria-live="polite">
+                <span class="auth-status-badge">Offline</span>
+                <div class="auth-status-text">
+                    <strong>Not logged in</strong>
+                    <span>Log in to publish blogs, like posts, and join the conversation.</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="card create-blog-card">
+            <!--<img src="image.jpg" alt="Post Image" width="670" height="500">-->
+            <!--<button id="heroLikeBtn" style="background-color: white;">&#10084; <span id="likeCount">0</span></button>-->
+            <h3 id="postFormHeading" style="color: white; font-size: 50px; text-align: center;">Create Blog</h3>
+            <input type="text" id="postTitle" placeholder="Blog title" required>
+            <textarea id="postBody" rows="4" placeholder="Write your blog..."></textarea>
+            <input type="text" id="postImageUrl" placeholder="Image URL (optional)">
+            <input type="file" id="postImageFile" accept="image/*">
+            <img id="postImagePreview" class="post-image" alt="Selected image preview" style="display: none;">
+            <div style="text-align: left;">
+                <button id="postSubmitBtn" onclick="createPost()">Publish</button>
+                <button id="postCancelBtn" type="button" onclick="cancelEditPost()" style="display: none; margin-left: 8px;">Cancel Edit</button>
+            </div>
+        </section>
+
+        <hr>
+        <br><br>
+        <main id="feed" style="color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <h2 style="margin: 0;">Latest Blogs</h2>
+                <button id="myBlogsToggleBtn" type="button" onclick="toggleMyBlogsView()" style="display: none;">Show My Blogs</button>
+            </div>
+            <br><br>
+            <div id="postsContainer"></div>
+        </main>
+    </div>
+
+    <div id="adminPanelModal" class="admin-modal" style="display: none;" onclick="handleAdminModalBackdrop(event)">
+        <section id="adminPanel" class="card admin-panel admin-modal-content">
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">Admin Only</p>
+                    <h2>Admin Panel</h2>
+                </div>
+                <div class="admin-modal-actions">
+                    <span class="panel-chip">Manage all blogs</span>
+                    <button type="button" class="admin-close-btn" onclick="closeAdminPanel()">Close</button>
+                </div>
+            </div>
+            <div class="admin-panel-grid">
+                <section class="admin-section">
+                    <h3>All User Blogs</h3>
+                    <p>See every blog with the author name, blog name, likes, and quick actions.</p>
+                    <div id="adminAllPostsContainer" class="admin-post-list"></div>
+                </section>
+                <section class="admin-section">
+                    <h3>Admin Blogs</h3>
+                    <p>See only the blogs posted by admin accounts.</p>
+                    <div id="adminOwnPostsContainer" class="admin-post-list"></div>
+                </section>
+            </div>
+        </section>
+    </div>
+
+    <div id="myBlogsModal" class="admin-modal" style="display: none;" onclick="handleMyBlogsModalBackdrop(event)">
+        <section class="card admin-panel admin-modal-content">
+            <div class="section-heading">
+                <div>
+                    <p class="panel-kicker">Student Space</p>
+                    <h2>My Blogs</h2>
+                </div>
+                <div class="admin-modal-actions">
+                    <span class="panel-chip">Only your blogs</span>
+                    <button type="button" class="admin-close-btn" onclick="closeMyBlogsPanel()">Close</button>
+                </div>
+            </div>
+            <section class="admin-section">
+                <h3>Your Blog Posts</h3>
+                <p>See only the blogs you posted, with likes and quick actions.</p>
+                <div id="myBlogsPostsContainer" class="admin-post-list"></div>
+            </section>
+        </section>
+    </div>
+
+        <script src="script.js"></script>
+</body>
+</html>

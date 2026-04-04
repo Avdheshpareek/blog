@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Blog Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <section class="card" style="max-width: 920px; margin: 70px auto; padding: 48px;">
+            <h2 style="color: white; margin-top: 0;">Create Account</h2>
+            <input type="text" id="signupName" placeholder="Name">
+            <input type="email" id="signupEmail" placeholder="Email">
+            <input type="password" id="signupPassword" placeholder="Password (min 6 chars)">
+            <label for="signupRole" style="color: white; font-weight: 700;">Select Role</label>
+            <select id="signupRole" style="width: 100%; border-radius: 15px; padding: 15px; margin: 8px 0 20px 0;">
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+            </select>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button type="button" onclick="signup()">Create Account</button>
+                <button type="button" onclick="window.location.href='login.html'">Go To Login</button>
+                <button type="button" onclick="window.location.href='index.html'">Back To Home</button>
+            </div>
+        </section>
+    </div>
+    <script src="auth-pages.js"></script>
+</body>
+</html>
